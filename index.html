@@ -5,13 +5,15 @@
 		<meta charset="utf-8" />
 		<title>Chat ValideoC</title>
 		<LINK href="css/style.css" rel="stylesheet" type="text/css">
+		<LINK href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
 
 	</head>
 
 	<body>
 
 
-		<h1>Chat ValideoC !</h1>
+		<h1 style="margin-left: 70px;">Chat ValideoC !</h1>
 
 		<div id="login">
 		<p> Choisissez un pseudo !</p>
@@ -21,17 +23,35 @@
 			</form>
 		</div>
 
+		<div class="row interface">
 
-		<div id="zone_chat"></div>
+			<div id="zone-animation" class="col-md-8">
 
-		<form action="/" method="post" id="formulaire_chat">
-			<input type="text" name="message" id="message" placeholder="Que souhaitez vous dire ?" size="50" autofocus />
-			<input type="submit" id="envoi_message" value="Envoyer"/>
-		</form>
+			</div>
+
+			<div id="zone_chat" class="col-md-3">
+
+			</div>
+		</div>
+
+		<div class="row interface">
+
+			<div class="col-md-8"></div>
+
+			<div id="formulaire_chat" class="col-md-3">
+
+				<form action="/" method="post" id="form">
+					<input type="text" name="message" id="message" placeholder="Que souhaitez vous dire ?" size="50" autofocus />
+					<input type="submit" id="envoi_message" value="Envoyer"/>
+				</form>
+
+			</div>
+		</div>
 
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-		<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+		<script src="http://localhost:1010/socket.io/socket.io.js"></script>
 		<script src="js/client.js"></script>
+		<script src="js/boostrap.min.js"></script>
 
 	</body>
 </html>

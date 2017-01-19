@@ -1,36 +1,48 @@
 html{
 	font-family:"Lato",sans-serif;
+	overflow: hidden;
 }
 
 	#zone_chat{
-		width: 90%;
-		height: 600px;
 		border : solid 1px;
-		border-color: #754220;
+		border-color: #754220 !important;
+		margin-top: 80px;
+		height: 600px;
 		overflow: hidden;
+		margin-left: 10px;
+	}
+
+	#zone-animation{
+		margin-top: 80px;
+		border : solid 1px;
+		border-color: #754220 !important;
+		overflow: hidden;
+		height: 600px;
+		margin-left: 70px;
 	}
 
 	h1,h2,h3,h4,h5,h6{
-		color: #754220;
+		color: #754220 !important;
 	}
 
 	#formulaire_chat{
-		margin-top: 40px;
+		margin-top: 10px;
+		margin-left: 80px;
 	}
 
 	#message{
-		border-color: #754220;
+		border-color: #754220 !important;
 		border-radius: 10px;
-		width: 85%;
-		height : 25px;
 		outline: none;
 		font-size: 20px;
+		width: 100%;
 	}
 
 	#envoi_message{
-		background-color: #754220;
+		background-color: #754220 !important;
 		color: white;
 		height: 25px;
+		margin-left: 180px;
 	}
 
 	#login{
@@ -54,7 +66,7 @@ html{
 		height : 25px;
 		outline: none;
 		font-size: 20px;
-		border-color: #754220;
+		border-color: #754220 !important;
 		border-radius: 10px;
 		margin-left: 5%;
 		margin-top: 20%;
@@ -74,4 +86,13 @@ html{
 		color: white;
 		font-size: 35px;
 		text-align: center;
+	}
+
+	.interface{
+		display: none;
+	}
+
+	.messages-chat{
+		font-size : 25px;
+		text-align: left;
 	}
