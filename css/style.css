@@ -8,8 +8,8 @@ html{
 		border-color: #754220 !important;
 		margin-top: 80px;
 		height: 600px;
-		overflow: hidden;
 		margin-left: 10px;
+		overflow-y:scroll;
 	}
 
 	#zone-animation{
@@ -32,7 +32,6 @@ html{
 
 	#message{
 		border-color: #754220 !important;
-		border-radius: 10px;
 		outline: none;
 		font-size: 20px;
 		width: 100%;
@@ -67,7 +66,6 @@ html{
 		outline: none;
 		font-size: 20px;
 		border-color: #754220 !important;
-		border-radius: 10px;
 		margin-left: 5%;
 		margin-top: 20%;
 	}
@@ -92,7 +90,41 @@ html{
 		display: none;
 	}
 
-	.messages-chat{
-		font-size : 25px;
+	.text-chat{
+		font-size : 20px;
 		text-align: left;
+	}
+
+	.section-message-chat{
+		border : solid 1px;
+		border-color: #754220 !important;
+		padding-right: 10px;
+		padding-left: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: rgba(0,0,0,0.1);
+ 		display: inline-block;
+ 		width: 100%;
+	}
+
+	.message-chat > p{
+ 		color: #754220;
+ 		font-size: 20px;
+ 		text-align: left;
+	}
+
+	.sep{
+		height: 10px;
+	}
+
+	.own-section-message-chat{
+		border : solid 1px;
+		border-color: #754220 !important;
+		padding-right: 10px;
+		padding-left: 10px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		background-color: rgba(0,0,0,0.1);
+ 		display: inline-block;
+ 		width: 100%;
 	}

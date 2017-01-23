@@ -12,7 +12,6 @@
 
 	<body>
 
-
 		<h1 style="margin-left: 70px;">Chat ValideoC !</h1>
 
 		<div id="login">
@@ -26,12 +25,36 @@
 		<div class="row interface">
 
 			<div id="zone-animation" class="col-md-8">
-
 			</div>
 
 			<div id="zone_chat" class="col-md-3">
 
-			</div>
+				<div class="section-message-chat" style="display : none;" id="msgtpl">
+					<div>
+						<img src="{{{user.avatar}}}">
+						<div class="message-chat">
+							<p style="margin-left : 35px; margin-top : -27px;"><strong>{{user.pseudo}}</strong></p>
+							<p>{{message}}</p>
+							<span style="margin-left : 350px;" class="date">{{h}}:{{m}}</span>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="own-section-message-chat" style="display : none;" id="ownmsg">
+					<div>
+						<img style="margin-left : 95%"src="{{{user.avatar}}}">
+						<div class="message-chat">
+							<p style="margin-right : 5%; text-align : right; margin-top : -27px;"><strong>{{user.pseudo}}</strong></p>
+							<p style="text-align : right;">{{message}}</p>
+							<span class="date">{{h}}:{{m}}</span>
+						</div>
+
+					</div>
+
+				</div>
+
 		</div>
 
 		<div class="row interface">
@@ -48,10 +71,11 @@
 			</div>
 		</div>
 
-		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="http://localhost:1010/socket.io/socket.io.js"></script>
 		<script src="js/client.js"></script>
 		<script src="js/boostrap.min.js"></script>
+		<script src="node_modules/mustache/mustache.min.js"></script>
 
 	</body>
 </html>

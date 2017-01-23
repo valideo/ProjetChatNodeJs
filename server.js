@@ -21,10 +21,17 @@ io.sockets.on('connection', function(socket){
 		me = user;
 		me.pseudo = user.username;
 		me.avatar = 'src/static-face.png';
+		if (me.pseudo.length <2 || me.pseudo.length > 15){
+			socket.emit('retry');
+		}
+		else{
 		socket.emit('logged');
 		socket.broadcast.emit('newusr', me);
 		io.sockets.emit('newavatar', me);
+		socket.emit('moveavatar', me);
 		users[me.pseudo] = me;
+		};
+
 
 		//Deconnexion au chat
 		socket.on('disconnect', function(){
@@ -39,10 +46,14 @@ io.sockets.on('connection', function(socket){
 
 	//Gestion des messages
 	socket.on('newmsg',function(message){
+		console.log('message envoyé');
 		message.user = me;
 		date = new Date();
 		message.h = date.getHours();
 		message.m = date.getMinutes();
-		io.sockets.emit('newmsg', message);
+		socket.broadcast.emit('newmsg', message);
+		socket.emit('ownmsg', message);
+	});
 
 });
+
