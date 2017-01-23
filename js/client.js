@@ -28,6 +28,7 @@
 		$('#message').focus();
 	});
 
+	//Check taille pseudo
 	socket.on('retry', function(){
 		alert('Pseudo entre 3 et 15 caractères !!');
 		event.preventDefault();
@@ -46,12 +47,8 @@
 
 	//Ajout de l'avatar sur la map
 	socket.on('newavatar', function(user){
-		$('#zone-animation').append('<div id="'+user.pseudo+'" style="position : relative; display: inline-block; width : 80px;"><p style="color : #754220; font-size : 20px; text-align : center; margin-bottom : -6px;">'+user.pseudo+'</p><img src="'+user.avatar+'" alt="avatar" width="70px"></div>');
+		$('#zone-animation').append('<div id="'+user.pseudo+'" style="position : absolute; top : 50%; left : 50%; display: inline-block; width : 80px;"><p style="color : #754220; font-size : 20px; text-align : center; margin-bottom : -6px;">'+user.pseudo+'</p><img id="avatar'+user.pseudo+'" src="'+user.avatar+'" alt="avatar" width="70px"></div>');
 		
-	});
-
-	socket.on('moveavatar', function(user){
-		guy = document.getElementById(ID);
 	});
 
 
@@ -64,7 +61,8 @@
 	})
 
 
-//Gestion des messages
+//Gestion des messages	
+	//Emission message formulaire
 	$('#form').submit(function(event){
 		event.preventDefault();
 		socket.emit('newmsg', {message : $('#message').val() });
@@ -72,46 +70,100 @@
 		$('#message').focus();
 	});
 
+	//Affiche message d'un autre utilisateur
 	socket.on('newmsg', function(message){
+		//Ajout séparateur espace si utilisateur != dernier message
 		if(lastmsg != message.user.pseudo) {
 			$('#zone_chat').append('<div class="sep"></div>');
 			lastmsg = message.user.pseudo;
 		}
-		//alert(lastmsg);
 		$('#zone_chat').append('<div class="section-message-chat"' + Mustache.render(msgtpl, message) + '</div>');
 		$('#zone_chat').animate({scrollTop : $('#zone_chat').prop('scrollHeight')}, 500);
 	});
 
+	//Affichage de son propre emssage
 	socket.on('ownmsg', function(message){
+		//Ajout séparateur espace si utilisateur != dernier message
 		if(lastmsg != message.user.pseudo) {
 			$('#zone_chat').append('<div class="sep"></div>');
 			lastmsg = message.user.pseudo;
 		}
-		//alert(lastmsg);
 		$('#zone_chat').append('<div class="own-section-message-chat"' + Mustache.render(ownmsg, message) + '</div>');
 		$('#zone_chat').animate({scrollTop : $('#zone_chat').prop('scrollHeight')}, 500);
 	});
 
 
-
+//Gestion déplacement des personnages sur la zone-animation
 	var container = document.getElementById('zone-animation');
-	var guyleft = 0;
-	function anim(e) {
+	var guyleft = 50;
+	var guyup = 50;
 
+	function anim(e) {
+		//Deplacement a droite
 		if(e.keyCode == 39){
-			console.log(guy);
-			guyleft += 2;
-			guy.style.left = guyleft + 'px';
+			guyleft += 0.4;
+			if(guyleft >= 94.5){
+				guyleft = 94.5;
+			}
+			//Emission nouvelle position horizontale
+			socket.emit('move', {direction : 'right', top : guyup, left : guyleft, identifiant : ID});
 		}
 
+		//Deplacement a gauche
 		if(e.keyCode == 37){
-			console.log(container);
-			guyleft -= 2;
-			guy.style.left = guyleft + 'px';
+			guyleft -= 0.4;
+			if(guyleft <= 0){
+				guyleft = 0;
+			}
+			//Emission nouvelle position horizontale
+			socket.emit('move', {direction : 'left',top : guyup, left : guyleft, identifiant : ID});
+		}
+
+		//Deplacement en haut
+		if(e.keyCode == 38){
+			guyup -= 0.7;
+			if(guyup <= 0){
+				guyup = 0;
+			}
+			//Emission nouvelle position verticale
+			socket.emit('move', {direction : 'top', top : guyup, left : guyleft, identifiant : ID});
+		}
+
+		//Deplacement en bas
+		if(e.keyCode == 40){
+			guyup += 0.7;
+			if(guyup >= 85.2){
+				guyup = 85.2;
+			}
+			//Emission nouvelle position verticale
+			socket.emit('move', {direction : 'bottom', top : guyup, left : guyleft, identifiant : ID});
 		}
 
 	}
 
 	document.onkeydown = anim;
+
+	//Affichage nouvelle position des avatars sur la zone
+	socket.on('newpos',function(pos){
+		element = document.getElementById(pos.identifiant);
+		avatarimg = document.getElementById('avatar'+pos.identifiant);
+
+
+		element.style.left = pos.left + '%';
+		element.style.top = pos.top + '%';
+
+		if(pos.direction == 'right'){
+			avatarimg.src="src/static-right.png";
+		}
+		else if(pos.direction == 'left'){
+			avatarimg.src="src/static-left.png";
+		}
+		else if(pos.direction == 'top'){
+			avatarimg.src="src/static-dos.png";
+		}
+		else if(pos.direction == 'bottom'){
+			avatarimg.src="src/static-face.png";
+		}
+	});
 
 })(jQuery);

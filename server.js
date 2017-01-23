@@ -8,12 +8,18 @@ httpServer.listen(1010);
 
 var io = require('socket.io').listen(httpServer);
 var users = {};
+var posusers = {};
 
 io.sockets.on('connection', function(socket){
 
+	//Affiche avatar users connectés avec leur position à la connexion
 	var me = false;
 	for(var k in users){
 		socket.emit('newavatar',users[k]);
+	}
+
+	for(var k in posusers){
+		socket.emit('newpos',posusers[k]);
 	}
 
 	//Connexion au chat
@@ -54,6 +60,13 @@ io.sockets.on('connection', function(socket){
 		socket.broadcast.emit('newmsg', message);
 		socket.emit('ownmsg', message);
 	});
+
+	//Gestion position avatars 
+	socket.on('move', function(pos){
+		io.sockets.emit('newpos', pos);
+		posusers[pos.identifiant] = pos;
+	});
+
 
 });
 
