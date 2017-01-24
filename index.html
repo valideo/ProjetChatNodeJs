@@ -2,79 +2,67 @@
 <html>
 	<head>
 
-		<meta charset="utf-8" />
+		<meta charset="utf-8"/>
 		<title>Chat ValideoC</title>
-		<LINK href="css/style.css" rel="stylesheet" type="text/css">
-		<LINK href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="css/style.css" rel="stylesheet" type="text/css"/>
 
 
 	</head>
 
 	<body>
 
-		<h1 style="margin-left: 70px;">Chat ValideoC !</h1>
-
 		<div id="login">
-		<p> Choisissez un pseudo !</p>
+			<p> Choisissez un pseudo !</p>
 			<form id="loginform">
-				<input type="text" name="login" id="username" placeholder="Pseudo">
-				<div><input id="envoi-pseudo" type="submit" value="Envoyer"></div>	
+				<input type="text" name="login" id="username" placeholder="Pseudo"/>
+				<div><input id="envoi-pseudo" type="submit" value="Envoyer"/></div>	
 			</form>
 		</div>
 
-		<div class="row interface">
+		<div class="interface">
 
-			<div id="zone-animation" class="col-md-8">
+			<div id="zone-animation">
+
 			</div>
 
-			<div id="zone_chat" class="col-md-3">
+			<div id="zone_chat">
 
 				<div class="section-message-chat" style="display : none;" id="msgtpl">
 					<div>
-						<img src="{{{user.avatar}}}">
+						<img src="{{{user.avatar}}}"/>
 						<div class="message-chat">
 							<p style="margin-left : 35px; margin-top : -27px;"><strong>{{user.pseudo}}</strong></p>
 							<p>{{message}}</p>
 							<span style="margin-left : 350px;" class="date">{{h}}:{{m}}</span>
 						</div>
-
 					</div>
-
 				</div>
 
 				<div class="own-section-message-chat" style="display : none;" id="ownmsg">
 					<div>
-						<img style="margin-left : 95%"src="{{{user.avatar}}}">
+						<img style="margin-left : 95%"src="{{{user.avatar}}}"/>
 						<div class="message-chat">
 							<p style="margin-right : 5%; text-align : right; margin-top : -27px;"><strong>{{user.pseudo}}</strong></p>
 							<p style="text-align : right;">{{message}}</p>
 							<span class="date">{{h}}:{{m}}</span>
 						</div>
-
 					</div>
-
 				</div>
 
-		</div>
-
-		<div class="row interface">
-
-			<div class="col-md-8"></div>
-
-			<div id="formulaire_chat" class="col-md-3">
-
-				<form action="/" method="post" id="form">
-					<input type="text" name="message" id="message" placeholder="Que souhaitez vous dire ?" size="50" autofocus />
-					<input type="submit" id="envoi_message" value="Envoyer"/>
-				</form>
-
 			</div>
+
+			<div id="formulaire_chat">
+				<form action="/" method="post" id="form">
+					<input autocomplete="off" type="text" name="message" id="message" placeholder="Que souhaitez vous dire ?" size="50" autofocus />
+					<input style="visibility : hidden;" type="submit" id="envoi_message" value="Envoyer"/>
+				</form>
+			</div>
+
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="http://localhost:1010/socket.io/socket.io.js"></script>
 		<script src="js/client.js"></script>
-		<script src="js/boostrap.min.js"></script>
 		<script src="node_modules/mustache/mustache.min.js"></script>
 
 	</body>

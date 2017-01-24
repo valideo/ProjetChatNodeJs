@@ -1,12 +1,40 @@
 var http = require('http');
+var app = require('express')();
+var server = http.createServer(app);
 
-httpServer = http.createServer(function(req,res){
-	console.log('qqun est sur la page');
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
 });
 
-httpServer.listen(1010);
+app.get('/css/style.css', function(req, res){
+    res.sendFile(__dirname + '/css/style.css');
+});
+app.get('/js/client.js', function(req, res){
+    res.sendFile(__dirname + '/js/client.js');
+});
+app.get('/node_modules/mustache/mustache.min.js', function(req, res){
+    res.sendFile(__dirname + '/node_modules/mustache/mustache.min.js');
+});
+app.get('http://localhost:1010/socket.io/socket.io.js', function(req, res){
+    res.sendFile(__dirname + 'http://localhost:1010/socket.io/socket.io.js');
+});
 
-var io = require('socket.io').listen(httpServer);
+app.get('/src/static-face.png', function(req, res){
+    res.sendFile(__dirname + '/src/static-face.png');
+});
+app.get('/src/static-dos.png', function(req, res){
+    res.sendFile(__dirname + '/src/static-dos.png');
+});
+app.get('/src/static-right.png', function(req, res){
+    res.sendFile(__dirname + '/src/static-right.png');
+});
+app.get('/src/static-left.png', function(req, res){
+    res.sendFile(__dirname + '/src/static-left.png');
+});
+
+server.listen(1010);
+
+var io = require('socket.io').listen(server);
 var users = {};
 var posusers = {};
 
@@ -27,7 +55,7 @@ io.sockets.on('connection', function(socket){
 		me = user;
 		me.pseudo = user.username;
 		me.avatar = 'src/static-face.png';
-		if (me.pseudo.length <2 || me.pseudo.length > 15){
+		if (me.pseudo.length <3 || me.pseudo.length > 10){
 			socket.emit('retry');
 		}
 		else{

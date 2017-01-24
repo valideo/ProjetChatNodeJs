@@ -1,24 +1,29 @@
 html{
 	font-family:"Lato",sans-serif;
-	overflow: hidden;
 }
 
+
 	#zone_chat{
-		border : solid 1px;
+		position: fixed;
 		border-color: #754220 !important;
-		margin-top: 80px;
-		height: 600px;
-		margin-left: 10px;
+		height: 35%;
+		margin-left: 0.5%;
 		overflow-y:scroll;
+		border-left : solid 1px;
+		border-bottom : solid 1px;
+		border-right-style: dotted;
+		margin-top: 29.8%;
+		width: 40%;
 	}
 
 	#zone-animation{
-		margin-top: 80px;
+		position: fixed;
 		border : solid 1px;
 		border-color: #754220 !important;
 		overflow: hidden;
-		height: 600px;
-		margin-left: 70px;
+		height: 60%;
+		margin-left: .5%;
+		width: 98%;
 	}
 
 	h1,h2,h3,h4,h5,h6{
@@ -26,8 +31,10 @@ html{
 	}
 
 	#formulaire_chat{
-		margin-top: 10px;
-		margin-left: 80px;
+		position: fixed;
+		margin-top: 47.2%;
+		width: 40%;
+		margin-left: 0.5%;
 	}
 
 	#message{
@@ -104,7 +111,8 @@ html{
 		padding-bottom: 10px;
 		background-color: rgba(0,0,0,0.1);
  		display: inline-block;
- 		width: 100%;
+ 		width: 60%;
+ 		margin-left: 36%;
 	}
 
 	.message-chat > p{
@@ -126,5 +134,11 @@ html{
 		padding-bottom: 10px;
 		background-color: rgba(0,0,0,0.1);
  		display: inline-block;
- 		width: 100%;
+ 		width: 60%;
+ 		margin-left: 0.2%;
+	}
+
+	#full{
+		width: 100%;
+		height: 100%;
 	}
