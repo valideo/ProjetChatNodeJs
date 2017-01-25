@@ -1,6 +1,6 @@
 (function($){
 
-	var socket = io.connect('http://localhost:1010');
+	var socket = io.connect('http://192.168.43.178:1010');
 	var msgtpl = $('#msgtpl').html();
 	var ownmsg = $('#ownmsg').html();
 	var lastmsg = false;
@@ -42,14 +42,14 @@
 
 	//Affichage de connexion sur chat
 	socket.on('newusr', function(user){
-		$('#zone_chat').append('<p class="text-chat" style="color : #754220; font-size : 1.5em;"><em>' + user.pseudo + ' vient de se connecter</em></p>');
+		$('#zone_chat').append('<p class="text-chat" style="color : #754220; font-size : 1em;"><em>' + user.pseudo + ' vient de se connecter</em></p>');
 		$('#zone_chat').animate({scrollTop : $('#zone_chat').prop('scrollHeight')}, 500);
 	});
 
 
 	//Ajout de l'avatar sur la map
 	socket.on('newavatar', function(user){
-		$('#zone-animation').append('<div id="'+user.pseudo+'" style="position : absolute; top : 50%; left : 50%; display: inline-block; width : 80px;"><div id="'+user.pseudo+'-message-avatar"></div><p style="color : #754220; font-size : 0.4em; text-align : center; margin-bottom : -6px;">'+user.pseudo+'</p><img id="avatar'+user.pseudo+'" src="'+user.avatar+'" alt="avatar" width="70px"></div>');
+		$('#zone-animation').append('<div id="'+user.pseudo+'" style="position : absolute; top : 50%; left : 50%; display: inline-block; width : 80px;"><div id="'+user.pseudo+'-message-avatar"></div><p style="color : #754220; font-size : 0.8em; text-align : center; margin-bottom : -0.2em;">'+user.pseudo+'</p><img id="avatar'+user.pseudo+'" src="'+user.avatar+'" alt="avatar" width="70px"></div>');
 		
 	});
 
@@ -59,7 +59,7 @@
 	//Suppression de l'avatar sur la map et affichage déconnexion chat
 	socket.on('disusr', function(user){
 		$('#' + user.pseudo).remove();
-		$('#zone_chat').append('<p class="text-chat" style="color : #754220; font-size : 1.5em;"><em>' + user.pseudo + ' vient de se déconnecter</em></p>');
+		$('#zone_chat').append('<p class="text-chat" style="color : #754220; font-size : 1em;"><em>' + user.pseudo + ' vient de se déconnecter</em></p>');
 		$('#zone_chat').animate({scrollTop : $('#zone_chat').prop('scrollHeight')}, 500);
 	})
 
@@ -83,7 +83,7 @@
 
 		$('#zone_chat').append('<div class="section-message-chat">' + Mustache.render(msgtpl, message) + '</div>');
 		$('#zone_chat').animate({scrollTop : $('#zone_chat').prop('scrollHeight')}, 500);
-		$('#'+message.user.pseudo+'-message-avatar').append('<p id="'+message.user.pseudo+''+message.IDmessage+'" style="color : #754220; background-color : rgba(0,0,0,0.1); font-size : 1.3em; position : absolute; text-align : center; height : auto; width : 100%; border : solid 1px #754220;">'+message.message+'</p>');
+		$('#'+message.user.pseudo+'-message-avatar').append('<p id="'+message.user.pseudo+''+message.IDmessage+'" style=" z-index : 20;color : #754220; background-color : rgba(0,0,0,0.1); font-size : 1.3em; position : absolute; text-align : center; height : auto; width : 12em; border : solid 1px #754220; margin-left: -4em;">'+message.message+'</p>');
 		document.getElementById(''+message.user.pseudo+message.IDmessage+'').style.top = -($('#'+message.user.pseudo+message.IDmessage).height())-5 + 'px';
 
 		$('#'+message.user.pseudo+message.IDmessage).fadeOut(2500);
@@ -98,7 +98,7 @@
 		}
 		$('#zone_chat').append('<div class="own-section-message-chat"' + Mustache.render(ownmsg, message) + '</div>');
 		$('#zone_chat').animate({scrollTop : $('#zone_chat').prop('scrollHeight')}, 500);
-		$('#'+ID+'-message-avatar').append('<p id="'+message.user.pseudo+''+message.IDmessage+'" style="color : #754220; background-color : rgba(0,0,0,0.1); font-size : 1.3em; position : absolute; text-align : center; height : auto; width : 100%; border : solid 1px #754220;">'+message.message+'</p>');
+		$('#'+ID+'-message-avatar').append('<p id="'+message.user.pseudo+''+message.IDmessage+'" style="z-index : 20; color : #754220; background-color : rgba(0,0,0,0.1); font-size : 1.1em; position : absolute; text-align : center; height : auto; width : 12em; border : solid 1px #754220; margin-left : -4em;">'+message.message+'</p>');
 		document.getElementById(''+message.user.pseudo+message.IDmessage+'').style.top = -($('#'+message.user.pseudo+message.IDmessage).height())-5 + 'px';
 
 		$('#'+message.user.pseudo+message.IDmessage).fadeOut(2500);

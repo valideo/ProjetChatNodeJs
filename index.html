@@ -32,8 +32,8 @@
 						<img src="{{{user.avatar}}}"/>
 						<div class="message-chat">
 							<p style="margin-left : 35px; margin-top : -27px;"><strong>{{user.pseudo}}</strong></p>
-							<p>{{message}}</p>
-							<span style="margin-left : 350px;" class="date">{{h}}:{{m}}</span>
+							<p style="margin-top : -0.7em; margin-bottom : -0.1em;">{{message}}</p>
+							<span style="margin-left : 350px; font-size : 0.7em;" class="date">{{h}}:{{m}}</span>
 						</div>
 					</div>
 				</div>
@@ -43,8 +43,8 @@
 						<img style="margin-left : 95%"src="{{{user.avatar}}}"/>
 						<div class="message-chat">
 							<p style="margin-right : 5%; text-align : right; margin-top : -27px;"><strong>{{user.pseudo}}</strong></p>
-							<p style="text-align : right;">{{message}}</p>
-							<span class="date">{{h}}:{{m}}</span>
+							<p style="text-align : right; margin-top : -0.7em; margin-bottom : -0.1em;">{{message}}</p>
+							<span style="font-size : 0.7em;" class="date">{{h}}:{{m}}</span>
 						</div>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="http://localhost:1010/socket.io/socket.io.js"></script>
+		<script src="js/socket.io.js"></script>
 		<script src="js/client.js"></script>
 		<script src="node_modules/mustache/mustache.min.js"></script>
 

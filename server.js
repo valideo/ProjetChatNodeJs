@@ -1,6 +1,5 @@
-var http = require('http');
 var app = require('express')();
-var server = http.createServer(app);
+var server = require('http').Server(app);
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
@@ -15,8 +14,8 @@ app.get('/js/client.js', function(req, res){
 app.get('/node_modules/mustache/mustache.min.js', function(req, res){
     res.sendFile(__dirname + '/node_modules/mustache/mustache.min.js');
 });
-app.get('http://localhost:1010/socket.io/socket.io.js', function(req, res){
-    res.sendFile(__dirname + 'http://localhost:1010/socket.io/socket.io.js');
+app.get('/js/socket.io.js', function(req, res){
+    res.sendFile(__dirname + '/js/socket.io.js');
 });
 
 app.get('/src/static-face.png', function(req, res){
@@ -52,6 +51,7 @@ io.sockets.on('connection', function(socket){
 
 	//Connexion au chat
 	socket.on('login', function(user){
+		console.log('pseudo envoyé');
 		me = user;
 		me.pseudo = user.username;
 		me.avatar = 'src/static-face.png';
