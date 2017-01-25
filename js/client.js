@@ -1,6 +1,6 @@
 (function($){
 
-	var socket = io.connect('http://192.168.43.178:1010');
+	var socket = io.connect('http://192.168.1.5:1010');
 	var msgtpl = $('#msgtpl').html();
 	var ownmsg = $('#ownmsg').html();
 	var lastmsg = false;
@@ -186,36 +186,7 @@
 		else if(pos.direction == 'bottom'){
 			avatarimg.src="src/static-face.png";
 		}
-	});
-
-	function dynamicCss(){
-
-		var fullheight = screen.height;
-		var fullwidth = screen.width;
-		zone_animation = document.getElementById('zone-animation');
-		zone_chat = document.getElementById('zone_chat');
-		formulaire_chat = document.getElementById('formulaire_chat');
-
-		var zone_animation_height = fullheight*0.50;
-		var zone_animation_width = fullwidth*0.99;
-		var zone_chat_height = fullheight*0.25;
-		var zone_chat_width = fullwidth*0.4;
-
-
-		zone_animation.style.width = zone_animation_width +'px';
-		zone_animation.style.height = zone_animation_height +'px';
-		zone_chat.style.marginTop = zone_animation_height+1+'px';
-		zone_chat.style.width = zone_chat_width +'px';
-		zone_chat.style.height = zone_chat_height +'px';
-		formulaire_chat.style.marginTop = zone_animation_height + zone_chat_height + 1 + 'px';
-		formulaire_chat.style.width = zone_chat_width + 'px';
-
-	}
-
-	window.setInterval(function(){
-  dynamicCss();
-}, 100);
-	
+	});	
 	
 
 })(jQuery);

@@ -17,6 +17,9 @@ app.get('/node_modules/mustache/mustache.min.js', function(req, res){
 app.get('/js/socket.io.js', function(req, res){
     res.sendFile(__dirname + '/js/socket.io.js');
 });
+app.get('/js/adaptivecss.js', function(req, res){
+    res.sendFile(__dirname + '/js/adaptivecss.js');
+});
 
 app.get('/src/static-face.png', function(req, res){
     res.sendFile(__dirname + '/src/static-face.png');
@@ -29,6 +32,9 @@ app.get('/src/static-right.png', function(req, res){
 });
 app.get('/src/static-left.png', function(req, res){
     res.sendFile(__dirname + '/src/static-left.png');
+});
+app.get('/src/arrows.png', function(req, res){
+    res.sendFile(__dirname + '/src/arrows.png');
 });
 
 server.listen(1010);

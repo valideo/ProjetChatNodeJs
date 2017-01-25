@@ -14,7 +14,7 @@
 		<div id="login">
 			<p> Choisissez un pseudo !</p>
 			<form id="loginform">
-				<input type="text" name="login" id="username" placeholder="Pseudo"/>
+				<input autocomplete="off" type="text" name="login" id="username" placeholder="Pseudo"/>
 				<div><input id="envoi-pseudo" type="submit" value="Envoyer"/></div>	
 			</form>
 		</div>
@@ -33,7 +33,7 @@
 						<div class="message-chat">
 							<p style="margin-left : 35px; margin-top : -27px;"><strong>{{user.pseudo}}</strong></p>
 							<p style="margin-top : -0.7em; margin-bottom : -0.1em;">{{message}}</p>
-							<span style="margin-left : 350px; font-size : 0.7em;" class="date">{{h}}:{{m}}</span>
+							<span style="margin-left : 90%;font-size : 0.7em;" class="date">{{h}}:{{m}}</span>
 						</div>
 					</div>
 				</div>
@@ -58,11 +58,19 @@
 				</form>
 			</div>
 
+			<div id="instructions">
+				<p style="font-size : 1em; color : #754220; text-align: center;">Utilisez les flèches de votre clavier pour déplacer votre avatar et aller parler à vos amis</p>
+				<img style="width: 10em; margin-left: 45%;" src="/src/arrows.png"/>
+				<p style="font-size : 1em; color : #754220; text-align: center;">Discutez avec vos amis en écrivant un message dans le chat !</p>
+
+			</div>
+
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="js/socket.io.js"></script>
 		<script src="js/client.js"></script>
+		<script src="/js/adaptivecss.js"></script>
 		<script src="node_modules/mustache/mustache.min.js"></script>
 
 	</body>
