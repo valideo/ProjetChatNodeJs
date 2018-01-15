@@ -38,6 +38,7 @@ app.get('/src/arrows.png', function(req, res){
 });
 
 server.listen(1010);
+console.log('server listening on port 1010');
 
 var io = require('socket.io').listen(server);
 var users = {};
